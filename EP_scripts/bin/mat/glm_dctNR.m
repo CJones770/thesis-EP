@@ -1,6 +1,4 @@
-skelMat = zeros(17,23);
-Imat = eye(17);
-skelMat(1:17,1:17) = Imat;
+Imat = eye(6);
 
 clear("matlabbatch")
 matlabbatch{1}.spm.stats.fmri_spec.dir = {sprintf('/%s/models/glmN-DCT',route)};
@@ -426,12 +424,11 @@ matlabbatch{1}.spm.stats.fmri_spec.sess.cond = struct('name', {}, 'onset', {}, '
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = {
-                                                     '/home/corey/EP_scripts/K_Filter_DCT1.mat'
                                                      sprintf('/%s/extracted_rois/CSF1_ts.txt',route)
                                                      sprintf('/%s/extracted_rois/WM1_ts.txt',route)
 						                             sprintf('/%s/mvmt_reg.txt',route)
                                                      };
-matlabbatch{1}.spm.stats.fmri_spec.sess.hpf = 1280;
+matlabbatch{1}.spm.stats.fmri_spec.sess.hpf = 100;
 matlabbatch{1}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
 matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [0 0];
 matlabbatch{1}.spm.stats.fmri_spec.volt = 1;
@@ -440,11 +437,11 @@ matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;
 matlabbatch{1}.spm.stats.fmri_spec.mask = {sprintf('/%s/masks/s-rfMRI_mask.nii,1',route)};
 matlabbatch{1}.spm.stats.fmri_spec.cvi = 'AR(1)';
 matlabbatch{2}.spm.stats.fmri_est.spmmat(1) = cfg_dep('fMRI model specification: SPM.mat File', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
-matlabbatch{2}.spm.stats.fmri_est.write_residuals = 0;
+matlabbatch{2}.spm.stats.fmri_est.write_residuals = 1;
 matlabbatch{2}.spm.stats.fmri_est.method.Classical = 1;
 matlabbatch{3}.spm.stats.con.spmmat(1) = cfg_dep('Model estimation: SPM.mat File', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
-matlabbatch{3}.spm.stats.con.consess{1}.fcon.name = 'F-contrast50dct';
-matlabbatch{3}.spm.stats.con.consess{1}.fcon.weights = skelMat;
+matlabbatch{3}.spm.stats.con.consess{1}.fcon.name = 'CSF_WM_mvmt';
+matlabbatch{3}.spm.stats.con.consess{1}.fcon.weights = Imat;
 matlabbatch{3}.spm.stats.con.consess{1}.fcon.sessrep = 'none';
 matlabbatch{3}.spm.stats.con.delete = 0;
 spm_jobman('run',matlabbatch)
