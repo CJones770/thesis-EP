@@ -48,7 +48,3 @@ femTable(ia,:) = [];
 
 [ia, ~] = ismember(joinedTable.sex,{Female});
 menTable(ia,:) = [];
-
-
-
-	
