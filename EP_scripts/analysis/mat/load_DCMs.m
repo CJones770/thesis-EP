@@ -23,7 +23,7 @@ boolIn = ismember(subs_in_table,subject_num);
 for idx=1:numel(subs_in_table)
     if boolIn(idx) == false
     empty_sub = subs_in_table(idx);
-    [ia, ib] = ismember(string(subTable.src_subject_id),string({empty_sub}));
+    [ia, ~] = ismember(string(subTable.src_subject_id),string({empty_sub}));
     subTable(ia,:) = [];
     end
 end
@@ -36,3 +36,19 @@ sortedTable = sortrows(subTable,5);
 sortedDCM = sortrows(DCM_array,3);
 
 joinedTable = horzcat(sortedDCM,sortedTable);
+
+subs_in_table = joinedTable{:,"src_subject_id"};
+
+Male = 'M';
+Female = 'F';
+[ia, ~] = ismember(joinedTable.sex,{Male});
+femTable = joinedTable;
+menTable = joinedTable;
+femTable(ia,:) = [];
+
+[ia, ~] = ismember(joinedTable.sex,{Female});
+menTable(ia,:) = [];
+
+
+
+	
