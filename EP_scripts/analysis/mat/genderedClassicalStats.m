@@ -120,9 +120,3 @@ diffMenWmn = femAverage_EC - menAverage_EC;
 %It is likely that the classical statistics are not the most appropriate
 %Method for assessing differences between groups, and that Bayesian
 %statistics should be utilized instead (as is prevalent in Literature)
-
-%for r=1:num_ROIs
-%    for c=1:num_ROIs
-%    femAverage_EC(r,c) = mean(femTable.Var1(1,1).DCM.Ep.A(r,c));
-%    end
-%end
