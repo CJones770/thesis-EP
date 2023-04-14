@@ -59,7 +59,9 @@ then
 mkdir $2/$subject$4/$3/positions_of_MaxF2s
 fi
 echo "running TwoBand DCM estimator for subject $subject..."
-echo "spm's GLM estimation function should appear and start in a few minutes..."
+echo "estimated run time is approxiamtely 1 to 4 hours per subject (with 32GB Ram, 4.7Ghz processor)"
+echo "Variability arises from differing number of iterations required to reach convergence in DCM estimation."
+echo "Some activity in the terminal should appear shortly (within a few minutes).."
 #Extract movement regressors from tsv and save as txt file
 ../bin/mvmtreg_tsv2txt.sh $2/$subject$4/$3 $subject $3
 #Smooth raw data with a 4mm Gaussian Kernel [fsl]
