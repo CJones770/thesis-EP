@@ -78,6 +78,8 @@ echo "Some activity in the terminal should appear shortly (within a few minutes)
 ../bin/glmRun.sh $2/$subject$4/$3 2>&1 | tee $2/$subject$4/$3/Logs/GLMs.txt
 #Merge GLM residuals into 4D [fsl]
 ../bin/merge_glmOut.sh $2/$subject$4/$3 2>&1 | tee $2/$subject$4/$3/Logs/merge_glm_res.txt
+#Remove split data that have been merged and compressed
+../bin/removeSplitData_p.sh $2/$subject$4/$3
 #Find max F-contrasts in ROIs and extract time series [MATLAB & spm]
 ../bin/findMaxFs.sh $2/$subject$4/$3 $subject 2>&1 | tee $2/$subject$4/$3/Logs/findMaxF.txt
 #Estimate DCM [spm]

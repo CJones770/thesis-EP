@@ -11,7 +11,7 @@ DCM_array = cell(num_subs,3);
 for idx=1:num_subs
     curr_sub=subject_num(idx);
     DCM_array{idx,1} = open(sprintf("%s/%d%s/%s/models/glmNR/DCM_21Roi.mat",pathDir,curr_sub,suff,encdir));
-    DCM_array{idx,2} = open(sprintf("%s/%d%s/%s/models/glmNR/DCM_21Roi.mat",pathDir,curr_sub,suff,encdir));
+    DCM_array{idx,2} = open(sprintf("%s/%d%s/%s/models/glmNR2/DCM_21Roi.mat",pathDir,curr_sub,suff,encdir));
     DCM_array{idx,3} = curr_sub;
 end
 
@@ -38,13 +38,3 @@ sortedDCM = sortrows(DCM_array,3);
 joinedTable = horzcat(sortedDCM,sortedTable);
 
 subs_in_table = joinedTable{:,"src_subject_id"};
-
-Male = 'M';
-Female = 'F';
-[ia, ~] = ismember(joinedTable.sex,{Male});
-femTable = joinedTable;
-menTable = joinedTable;
-femTable(ia,:) = [];
-
-[ia, ~] = ismember(joinedTable.sex,{Female});
-menTable(ia,:) = [];
