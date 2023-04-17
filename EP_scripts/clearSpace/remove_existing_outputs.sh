@@ -15,4 +15,5 @@ rm -r $2/$subject$3/$4/positions_of_MaxF2s $5/$subject$3/$4/positions_of_MaxF2s
 rm -r $2/$subject$3/$4/fMRI_filtered $5/$subject$3/$4/fMRI_filtered
 rm -r $2/$subject$3/$4/fMRI_f2 $5/$subject$3/$4/fMRI_f2
 rm -r $2/$subject$3/$4/fMRI_f2_filtered $5/$subject$3/$4/fMRI_f2_filtered
-done
+rm -r $2/$subject$3/$4/fMRI_f2_filtered $5/$subject$3/$4/Logs
+done < $1
