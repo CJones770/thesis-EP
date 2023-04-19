@@ -17,6 +17,13 @@ then
 fi
 while read -r subject;
 do
+if [ -f ../Logs/Subs2Run_tempout.txt ] #this if - continue statement only exists for listGoodSubs.sh functionality; Uneeded if calling a specific list of subjects (e.g, that have already been run).
+then
+	if grep $subject ../Logs/Subs2Run_tempout.txt
+	then	
+		continue
+	fi
+fi
 if [ ! -f $2/"$subject"$3/$4/models/glmNR/DCM_21Roi.mat ] 
 then
 	echo $subject >> $5
