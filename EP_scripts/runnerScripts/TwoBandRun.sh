@@ -9,7 +9,7 @@ suffix=$4
 
 #Requires: FSL, SPM, DPABI & MATLAB
 
-#Input arguments are 1: path to text file of subject IDs with one ID number per line, 2: the directory that contains the individual subject folders, 3 optional: (the encoding direction of the data if included in the path name) and 4 (optional): a standard suffix that follows each of the subject file names.
+#Input arguments are 1: path to text file of subject IDs with one ID number per line, 2: the directory that contains the individual subject folders, 3 optional: (the encoding direction of the data if included in the path name) and 4 (optional): a standard suffix that follows each of the subject ids in the file names.
 
 #e.g., ./TwoBandRun.sh /media/drive/project/subject_list.txt /media/drive/project/fMRI _01_MR
 #This points to a subject list (which should contain values like 1001, 1002, ...), 
@@ -19,7 +19,34 @@ suffix=$4
 
 #Author: Corey Jones | corey.jones@tum.de
 
-#Feature to be added: count num subs in list and report to terminal
+Help()
+{
+	#Display help
+	echo "TwoBandRun prepares fMRI data for and subsequently performs resting state dynamic causal model estimation"
+	echo
+	echo "It is expected that the subject data have a standard path naming convention that takes the following form:"
+	echo "/SubjectDir/SubjectidSuffix/EncodingDirection/* where the files represented by * contain the BOLD fMRI data and movement regressors"
+	echo
+	echo "Given these scripts were developed for a specific project using rapidtide corrected data, it is expected that"
+	echo "Subject time series data should be stored in a file called Rap*_SubjectID_EncDir_desc-lfofilterCleaned_bold.nii.gz"
+	echo "Movement parameters should take the form of Rap*_SubjectID_EncDir_desc-refinedmovingregressor_timeseries.tsv.gz"
+	echo
+	echo "If needed, the name for the BOLD data can be changed in the EP_scripts/bin/smooth_raw.sh script to match a different convention"
+	echo "Similarly, one can change the movement regressor name in the EP_scripts/bin/mvmtreg_tsv2txt.sh file"
+	echo
+	echo "Syntax: ./TwoBandRun.sh SubjectListPath SubjectDirectory [EncodingDirection] [Suffix] [-h]"
+	echo "Example: ./TwoBandRun.sh /media/corey/4TBdrive/subject_list.txt /media/corey/4TBdrive/SubjectDir PA _01_MR" 	
+	echo "options:"
+	echo "h		Print this Help"
+
+}
+while getopts ":h" option; do
+	case $option in
+		h) #display Help
+		Help
+		exit;;
+	esac
+done
 
 while read -r subject;
 do
