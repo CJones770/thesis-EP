@@ -45,13 +45,28 @@ title('patient vs control');
 for r=1:num_ROIs
     hold on
     for c=1:num_ROIs 
+            a = xyCoords(r,1) - xyCoords(c,1); %diff in x coords
+            b = xyCoords(r,2) - xyCoords(c,2); %diff in y coords
+            h = sqrt(a^2 + b^2); %(xyCoords(r,2)-xyCoords(c,2))^2); %hypotenuse
+            theta1 = asin(a/h); %angle
+            theta2 = pi/2 - theta1; 
+            newx1 = xyCoords(r,1) + (xyRadii(r) * cos(theta1));
+            newx2 = xyCoords(c,1) + (xyRadii(c) * cos(theta2)); 
+            if xyCoords(c,2) < xyCoords(r,2) 
+            newy1 = xyCoords(r,2) - (xyRadii(r) * sin(theta1));
+            newy2 = xyCoords(c,2) + (xyRadii(c) * sin(theta2));
+            end
+            if xyCoords(c,2) > xyCoords(r,2)
+            newy1 = xyCoords(r,2) - (xyRadii(r) * sin(theta1));
+            newy2 = xyCoords(c,2) - (xyRadii(c) * sin(theta2));  
+            end
         if res_pcDiffEC(r,c) ~= 0
             count = count +1;
             if res_pcDiffEC(r,c) > 0
-            arrow = plot_arrow(xyCoords(r,1),xyCoords(r,2),xyCoords(c,1),xyCoords(c,2),'linewidth',res_pcDiffEC(r,c),'color',[0 1 0],'facecolor',[0 1 0]); %Green arrow for positive
+            arrow = plot_arrow(newx1,newy1,newx2,newy2,'linewidth',res_pcDiffEC(r,c),'color',[0 1 0],'facecolor',[0 1 0]); %Green arrow for positive
             end
             if res_pcDiffEC(r,c) < 0
-            arrow = plot_arrow(xyCoords(r,1),xyCoords(r,2),xyCoords(c,1),xyCoords(c,2),'linewidth',res_pcDiffEC(r,c),'color',[0 0 0]); %Black arrow for negative
+            arrow = plot_arrow(newx1,newy1,newx2,newy2,'linewidth',res_pcDiffEC(r,c),'color',[0 0 0]); %Black arrow for negative
             end
         end
     end
