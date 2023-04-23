@@ -25,12 +25,13 @@ for r=1:4
             if xyCoords(c,2) < xyCoords(r,2) 
             newy1 = xyCoords(r,2) - (xyRadii(r) * sin(theta1));
             newy2 = xyCoords(c,2) + (xyRadii(c) * sin(theta2));
+            arrow = plot_arrow(newx1,newy1,newx2,newy2); %Black arrow for negative
             end
             if xyCoords(c,2) > xyCoords(r,2)
             newy1 = xyCoords(r,2) - (xyRadii(r) * sin(theta1));
             newy2 = xyCoords(c,2) - (xyRadii(c) * sin(theta2));  
-            end
             arrow = plot_arrow(newx1,newy1,newx2,newy2); %Black arrow for negative
+            end       
     end
      viscircles(xyCoords(r,:),xyRadii(r))
      text(xyCoords(r,1),xyCoords(r,2),xyLabs(r))
