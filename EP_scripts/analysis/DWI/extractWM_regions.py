@@ -27,6 +27,12 @@ for r in range(1,int(np.max(jhu_data))+1):
             for z in range(0,91):
                 if jhu_data[x,y,z] == r:
                     tract[x,y,z] = dwi_data[x,y,z]
+    tract_average = tract[np.nonzero(tract)].mean()
+    for x in range(0,91):
+        for y in range(0,109):
+            for z in range(0,91):
+                if jhu_data[x,y,z] == r:
+                    tract[x,y,z] = tract_average
     ext_tract = nib.Nifti1Image(tract,affine)
     nib.save(ext_tract,'%s/jhu_%d' %(sys.argv[2],r))
                     
@@ -39,6 +45,12 @@ for r in range(1,int(np.max(thal_data))+1):
             for z in range(0,91):
                 if thal_data[x,y,z] == r:
                     tract[x,y,z] = dwi_data[x,y,z]
+    tract_average = tract[np.nonzero(tract)].mean()
+    for x in range(0,91):
+        for y in range(0,109):
+            for z in range(0,91):
+                if thal_data[x,y,z] == r:
+                    tract[x,y,z] = tract_average
     ext_tract = nib.Nifti1Image(tract,affine)
     nib.save(ext_tract,'%s/thal_%d' %(sys.argv[2],r))
 
@@ -52,5 +64,11 @@ for r in labs_of_interest:
             for z in range(0,91):
                 if cerb_data[x,y,z] == r:
                     tract[x,y,z] = dwi_data[x,y,z]
+    tract_average = tract[np.nonzero(tract)].mean()
+    for x in range(0,91):
+        for y in range(0,109):
+            for z in range(0,91):
+                if cerb_data[x,y,z] == r:
+                    tract[x,y,z] = tract_average
     ext_tract = nib.Nifti1Image(tract,affine)
     nib.save(ext_tract,'%s/cerb_%d' %(sys.argv[2],r))
