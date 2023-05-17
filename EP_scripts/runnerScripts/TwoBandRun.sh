@@ -92,13 +92,16 @@ echo "Some activity in the terminal should appear shortly (within a few minutes)
 #Extract movement regressors from tsv and save as txt file
 ../bin/mvmtreg_tsv2txt.sh $2/$subject$4/$3 $subject $3
 #Smooth raw data with a 4mm Gaussian Kernel [fsl]
-../bin/smooth_raw.sh $2/$subject$4/$3 $subject $3 2>&1 | tee $2/$subject$4/$3/Logs/4mmsmooth.txt
+../bin/smooth_raw.sh $2/$subject$4/$3 $subject $3 6 2>&1 | tee $2/$subject$4/$3/Logs/4mmsmooth.txt
 #Extract brain mask to use in bandpass filter [fsl]
 ../bin/mask_gen.sh $2/$subject$4/$3 $3 2>&1 | tee $2/$subject$4/$3/Logs/mask_gen.txt
 #Bandpass filter [DPABI]
 ../bin/2bpf_run.sh $2/$subject$4/$3 2>&1 | tee $2/$subject$4/$3/Logs/2bpf.txt
+
 #Extract CSF and WM signal for GLM (averaged tx1 vectors) [fsl]
-../bin/extract_csf_wm.sh $2/$subject$4/$3 2>&1 | tee $2/$subject$4/$3/Logs/csf_wm_extract.txt
+#../bin/extract_csf_wm.sh $2/$subject$4/$3 2>&1 | tee $2/$subject$4/$3/Logs/csf_wm_extract.txt
+#Now done beforehand in python [nibabel] - change reflected in glm-DCT and glm-NR scripts
+
 #Split smoothed, filtered data into individual volumes [fsl]
 ../bin/split_smoothed.sh $2/$subject$4/$3 2>&1 | tee $2/$subject$4/$3/Logs/split_smoothed.txt
 #Estimate GLMs [spm]
