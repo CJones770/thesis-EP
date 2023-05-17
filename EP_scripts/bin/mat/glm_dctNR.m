@@ -3,7 +3,7 @@ Imat = eye(17);
 skelMat(1:17,1:17) = Imat;
 
 clear("matlabbatch")
-matlabbatch{1}.spm.stats.fmri_spec.dir = {sprintf('/%s/models/glmN-DCT',route)};
+matlabbatch{1}.spm.stats.fmri_spec.dir = {sprintf('/%s/models/2glmN-DCT',route)};
 matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
 matlabbatch{1}.spm.stats.fmri_spec.timing.RT = 0.8;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = 16;
@@ -427,9 +427,8 @@ matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = {
                                                      '/home/corey/EP_scripts/K_Filter_DCT1.mat'
-                                                     sprintf('/%s/extracted_rois/CSF1_ts.txt',route)
-                                                     sprintf('/%s/extracted_rois/WM1_ts.txt',route)
-						                             sprintf('/%s/mvmt_reg.txt',route)
+                                                     sprintf('/%s/extracted_rois/f1_4thVent_csf_mean.txt',route)
+                                                     sprintf('/%s/movement_regressors.txt',route)
                                                      };
 matlabbatch{1}.spm.stats.fmri_spec.sess.hpf = 1280;
 matlabbatch{1}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
