@@ -1,11 +1,11 @@
 %plotting arrows based on EC values
 
-GroupAverage_EC = bma_2.Ep(1:441);
+GroupAverage_EC = bma_1.Ep(1:441);
 
-pc_diffEC = bma_2.Ep(883:1323);
+pc_diffEC = bma_1.Ep(883:1323);
 
 %Variance
-Group_var = diag(bma_2.Cp); 
+Group_var = diag(bma_1.Cp); 
 
 X0_var = Group_var(1:441);
 pc_var = Group_var(883:1323);
@@ -41,7 +41,7 @@ xyinfo{r,3} = xyLabs{r,1};
 xyinfo{r,4} =xyRadii(r,1);
 end
 count = 0;
-title('patient vs control [0.027 - 0.08Hz]');
+title('patient vs control [0.01 - 0.027Hz]');
 for r=1:num_ROIs
     hold on
     for c=1:num_ROIs 
