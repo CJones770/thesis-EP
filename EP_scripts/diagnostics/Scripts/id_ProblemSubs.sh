@@ -24,11 +24,11 @@ then
 		continue
 	fi
 fi
-if [ ! -f $2/"$subject"$3/$4/models/glmNR/DCM_21Roi.mat ] 
+if [ ! -f $2/"$subject"$3/$4/models/2glmNR/DCM_21Roi.mat ] 
 then
 	echo $subject >> $5
 	echo "$subject no output for F1" >> $6
-elif [ ! -f $2/"$subject"$3/$4/models/glmNR2/DCM_21Roi.mat ] 
+elif [ ! -f $2/"$subject"$3/$4/models/2glmNR2/DCM_21Roi.mat ] 
 then
 	echo $subject >> $5
 	echo "$subject no output for F2" >> $6
