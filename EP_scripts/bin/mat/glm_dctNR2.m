@@ -1,6 +1,6 @@
-skelMat = zeros(50,53);
-Imat = eye(50);
-skelMat(1:50,1:50) = Imat;
+skelMat = zeros(47,50);
+Imat = eye(47);
+skelMat(1:47,1:47) = Imat;
 
 clear("matlabbatch")
 matlabbatch{1}.spm.stats.fmri_spec.dir = {sprintf('%s/models/2glmN-DCT2',route)};
@@ -426,7 +426,7 @@ matlabbatch{1}.spm.stats.fmri_spec.sess.cond = struct('name', {}, 'onset', {}, '
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi = {''};
 matlabbatch{1}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = {
-                                                     '/home/corey/EP_scripts/K_Filter_DCT2.mat'
+                                                     '/home/corey/thesis-EP/EP_scripts/DCT_basis_sets/K_Filter_DCT2_slow4.mat'
                                                      sprintf('%s/extracted_rois/f2_4thVent_csf_mean.txt',route)
 						     sprintf('/%s/movement_regressors.txt',route)
                                                      };
