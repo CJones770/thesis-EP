@@ -25,7 +25,7 @@ Help()
 	echo "TwoBandRun prepares fMRI data for and subsequently performs resting state dynamic causal model estimation"
 	echo
 	echo "It is expected that the subject data have a standard path naming convention that takes the following form:"
-	echo "/SubjectDir/SubjectidSuffix/EncodingDirection/* where the files represented by * contain the BOLD fMRI data and movement regressors"
+	echo "/SubjectDirSubjectidSuffix/EncodingDirection/* where the files represented by * contain the BOLD fMRI data and movement regressors"
 	echo
 	echo "Given these scripts were developed for a specific project using rapidtide corrected data, it is expected that"
 	echo "Subject time series data should be stored in a file called Rap*_SubjectID_EncDir_desc-lfofilterCleaned_bold.nii.gz"

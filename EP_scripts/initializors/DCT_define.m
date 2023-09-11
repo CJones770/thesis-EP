@@ -1,6 +1,6 @@
 %spm filter implementation
 
-%Values for repition rate (TR) annd the highpass cutoff frequencies are adjustable 
+%Values for repition rate (TR) and the lowpass cutoff frequencies are adjustable 
 % Insert value of 1/f, f being the cutoff frequency in Hz to replace the values of 37 or 13.69, respectively.
 TR = 0.8;
 K_input = struct('RT',TR,'HParam',37,'row',ones(1,410));
